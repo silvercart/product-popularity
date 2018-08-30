@@ -1,0 +1,12 @@
+---
+Name: silvercart-product-popularity-extensions
+---
+SilverCart\Model\Order\OrderPosition:
+  extensions:
+    - SilverCart\ProductPopularity\Extensions\Order\OrderPositionExtension
+SilverCart\Model\Pages\ProductGroupPageController:
+  extensions:
+    - SilverCart\ProductPopularity\Extensions\Pages\ProductGroupPageControllerExtension
+SilverCart\Model\Product\Product:
+  extensions:
+    - SilverCart\ProductPopularity\Extensions\Product\ProductExtension

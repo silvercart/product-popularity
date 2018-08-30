@@ -1,0 +1,10 @@
+en:
+  SilverCart\ProductPopularity\Extensions\Product\ProductExtension:
+    PopularityScoreTotal: "Popularity Score (total)"
+    PopularityScoreCurrentMonth: "Popularity Score (current month)"
+  SilverCart\ProductPopularity\Model\Product\ProductPopularity:
+    PLURALNAME: "Popularity"
+    Product: "Product"
+    ProductID: "Product-ID"
+    Score: "Score"
+    SINGULARNAME: "Popularity"
