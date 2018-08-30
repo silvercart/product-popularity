@@ -74,6 +74,9 @@ class ProductExtension extends DataExtension
      */
     public function onAfterAddToCart($position, $isNewPosition)
     {
+        if (!ProductPopularity::can_add_popularity()) {
+            return;
+        }
         if ($isNewPosition) {
             $this->owner->addPopularity(ProductPopularity::SCORE_CART);
         }
@@ -91,6 +94,9 @@ class ProductExtension extends DataExtension
      */
     public function onAfterAddToList($position)
     {
+        if (!ProductPopularity::can_add_popularity()) {
+            return;
+        }
         $this->owner->addPopularity(ProductPopularity::SCORE_LIST);
     }
     

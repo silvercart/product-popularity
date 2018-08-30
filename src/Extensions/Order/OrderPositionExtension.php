@@ -33,6 +33,9 @@ class OrderPositionExtension extends DataExtension
     public function onAfterWrite()
     {
         parent::onAfterWrite();
+        if (!ProductPopularity::can_add_popularity()) {
+            return;
+        }
         $isNewRecord = $this->owner->isChanged('ID');
         if ($isNewRecord) {
             $product = $this->owner->Product();

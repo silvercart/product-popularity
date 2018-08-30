@@ -3,7 +3,9 @@
 namespace SilverCart\ProductPopularity\Model\Product;
 
 use SilverCart\Dev\Tools;
+use SilverCart\Model\Customer\Customer;
 use SilverCart\Model\Product\Product;
+use SilverStripe\Control\Director;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\ORM\FieldType\DBInt;
 
@@ -280,5 +282,19 @@ class ProductPopularity extends DataObject
             $productIDs = [];
         }
         return $productIDs;
+    }
+    
+    /**
+     * Returns false if the current user is an admin and the current environment
+     * mode is live.
+     * 
+     * @return bool
+     * 
+     * @author Sebastian Diel <sdiel@pixeltricks.de>
+     * @since 30.08.2018
+     */
+    public static function can_add_popularity()
+    {
+        return !(Customer::is_admin() && Director::isLive());
     }
 }

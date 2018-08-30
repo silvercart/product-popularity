@@ -26,6 +26,9 @@ class ProductGroupPageControllerExtension extends Extension
      */
     public function onBeforeRenderProductDetailView()
     {
+        if (!ProductPopularity::can_add_popularity()) {
+            return;
+        }
         $product = $this->owner->getProduct();
         if (!ProductPopularity::is_first_view($product)) {
             return;
