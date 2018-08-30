@@ -8,3 +8,10 @@ de:
     ProductID: "Artikel-ID"
     Score: "Wert"
     SINGULARNAME: "Beliebtheit"
+  SilverCart\ProductPopularity\Model\Widgets\PopularProductsWidget:
+    CMSTITLE: "Beliebte Artikel"
+    DESCRIPTION: "Dieses Widget zeigt eine konfigurierbare Anzahl von beliebten Artikeln an."
+    TITLE: "Beliebte Artikel"
+  SilverCart\ProductPopularity\Model\Widgets\PopularProductsWidgetTranslation:
+    PLURALNAME: "Übersetzungen"
+    SINGULARNAME: "Übersetzung"

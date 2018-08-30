@@ -10,3 +10,9 @@ SilverCart\Model\Pages\ProductGroupPageController:
 SilverCart\Model\Product\Product:
   extensions:
     - SilverCart\ProductPopularity\Extensions\Product\ProductExtension
+SilverCart\ProductPopularity\Model\Widgets\PopularProductsWidget:
+  extensions:
+    - SilverCart\Model\Translation\TranslatableDataObjectExtension
+SilverCart\ProductPopularity\Model\Widgets\PopularProductsWidgetTranslation:
+  extensions:
+    - SilverCart\Model\Translation\TranslationExtension

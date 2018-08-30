@@ -8,3 +8,10 @@ en:
     ProductID: "Product-ID"
     Score: "Score"
     SINGULARNAME: "Popularity"
+  SilverCart\ProductPopularity\Model\Widgets\PopularProductsWidget:
+    CMSTITLE: "Popular Products"
+    DESCRIPTION: "This widget shows a custom number of popular products."
+    TITLE: "Popular Products"
+  SilverCart\ProductPopularity\Model\Widgets\PopularProductsWidgetTranslation:
+    PLURALNAME: "Translations"
+    SINGULARNAME: "Translation"
