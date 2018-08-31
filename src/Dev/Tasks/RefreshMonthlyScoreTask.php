@@ -5,6 +5,7 @@ namespace SilverCart\ProductPopularity\Dev\Tasks;
 use SilverCart\Model\Product\Product;
 use SilverCart\ProductPopularity\Model\Product\ProductPopularity;
 use SilverStripe\Dev\BuildTask;
+use SilverStripe\ORM\DB;
 
 /**
  * This task is meant to refresh a products monthly popularity score.
@@ -57,6 +58,31 @@ class RefreshMonthlyScoreTask extends BuildTask
      */
     public function run($request)
     {
+        $this->printInfo("----------------------------------------");
+        $this->printInfo("Executing RefreshMonthlyScoreTask.");
+        $this->printInfo("");
+        $this->deleteEmptyScores();
+        $this->printInfo("");
+        $this->deleteDeadScores();
+        $this->printInfo("");
+        $this->refreshMonthlyScore();
+        $this->printInfo("");
+        $this->printInfo("----------------------------------------");
+    }
+    
+    /**
+     * Iterates through every product to make sure the monthly popularity score
+     * is refreshed.
+     * 
+     * @return void
+     * 
+     * @author Sebastian Diel <sdiel@pixeltricks.de>
+     * @since 31.08.2018
+     */
+    protected function refreshMonthlyScore()
+    {
+        $this->printInfo("\tRefreshing monthly scores...");
+        $this->printInfo("");
         $products     = Product::get();
         $currentIndex = 0;
         $total        = $products->count();
@@ -67,7 +93,68 @@ class RefreshMonthlyScoreTask extends BuildTask
             ProductPopularity::get_current($product);
         }
         $this->printInfo("");
-        $this->printInfo("Refreshed the monthly popularity score of {$total} products.");
         $this->printInfo("");
+        $this->printInfo("\tRefreshed the monthly popularity score of {$total} products.");
+    }
+    
+    /**
+     * Deletes all empty scores which are created before the current month.
+     * 
+     * @return void
+     * 
+     * @author Sebastian Diel <sdiel@pixeltricks.de>
+     * @since 31.08.2018
+     */
+    protected function deleteEmptyScores()
+    {
+        $date = date('Y-m-01');
+        $this->printInfo("\tDeleting all empty scores which are created before {$date}...", "31");
+        $where       = '"Score" = 0 AND "Created" < \'%s\'';
+        $countQuery  = 'SELECT COUNT(ID) AS Total FROM %s WHERE ' . $where;
+        $deleteQuery = 'DELETE FROM %s WHERE ' . $where;
+        $lastMonth   = date('Y-m');
+        if ((int) date('j') === 1) {
+            $lastMonth = ((int) date('Y') - 1) . '-12';
+        }
+        $result = DB::query(sprintf($countQuery,
+            ProductPopularity::config()->get('table_name'),
+            $lastMonth
+        ));
+        DB::query(sprintf($deleteQuery,
+            ProductPopularity::config()->get('table_name'),
+            $lastMonth
+        ));
+        $total = $result->first()['Total'];
+        $this->printInfo("\tDeleted a total of {$total} records.", "31");
+    }
+    
+    /**
+     * Deletes all dead scores with broken product relations.
+     * 
+     * @return void
+     * 
+     * @author Sebastian Diel <sdiel@pixeltricks.de>
+     * @since 31.08.2018
+     */
+    protected function deleteDeadScores()
+    {
+        $this->printInfo("\tDeleting all scores with broken product relations...", "31");
+        $where       = '"ProductID" NOT IN (SELECT "%s"."ID" FROM %s)';
+        $countQuery  = 'SELECT COUNT("%s"."ID") AS Total FROM %s WHERE ' . $where;
+        $deleteQuery = 'DELETE FROM %s WHERE ' . $where;
+        
+        $result = DB::query(sprintf($countQuery,
+            ProductPopularity::config()->get('table_name'),
+            ProductPopularity::config()->get('table_name'),
+            Product::config()->get('table_name'),
+            Product::config()->get('table_name')
+        ));
+        DB::query(sprintf($deleteQuery,
+            ProductPopularity::config()->get('table_name'),
+            Product::config()->get('table_name'),
+            Product::config()->get('table_name')
+        ));
+        $total = $result->first()['Total'];
+        $this->printInfo("\tDeleted a total of {$total} records.", "31");
     }
 }

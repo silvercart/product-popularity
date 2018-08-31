@@ -87,10 +87,12 @@ class ProductPopularity extends DataObject
     protected function onAfterWrite()
     {
         parent::onAfterWrite();
-        $product = $this->Product();
-        $product->PopularityScoreCurrentMonth = $this->Score;
-        $product->PopularityScoreTotal        = self::get_total_score($product);
-        $product->write();
+        if ($this->isCurrentScore()) {
+            $product = $this->Product();
+            $product->PopularityScoreCurrentMonth = $this->Score;
+            $product->PopularityScoreTotal        = self::get_total_score($product);
+            $product->write();
+        }
     }
     
     /**
@@ -121,6 +123,16 @@ class ProductPopularity extends DataObject
         $this->Score += $score;
         $this->write();
         return $this;
+    }
+    
+    /**
+     * Returns whether this ProductPopularity score is the current months score.
+     * 
+     * @return bool
+     */
+    public function isCurrentScore()
+    {
+        return substr($this->Created, 0, 7) == date('Y-m');
     }
     
     /**
@@ -189,13 +201,14 @@ class ProductPopularity extends DataObject
                 $year = date('Y');
             }
             $paddedMonth = str_pad($month, 2, '0', STR_PAD_LEFT);
-            $popularity  = self::get()->filter('ProductID', $product->ID)->where('"Created" > \'' . $year . '-' . $paddedMonth . '\'')->first();
+            $lastDay     = date('t', strtotime("{$year}-{$paddedMonth}-01"));
+            $popularity  = self::get()->filter('ProductID', $product->ID)->where("Created >= '{$year}-{$paddedMonth}-01 00:00:00' && Created <= '{$year}-{$paddedMonth}-{$lastDay} 23:59:59'")->first();
             if (!($popularity instanceof ProductPopularity)
                 || !$popularity->exists()) {
                 $popularity = self::create();
                 $popularity->ProductID = $product->ID;
-                if ($year . '-' . $paddedMonth != date('Y-m')) {
-                    $popularity->Created = $year . '-' . $paddedMonth . '-01 00:00:00';
+                if ("{$year}-{$paddedMonth}" != date('Y-m')) {
+                    $popularity->Created = "{$year}-{$paddedMonth}-01 00:00:00";
                 }
                 $popularity->write();
             }
