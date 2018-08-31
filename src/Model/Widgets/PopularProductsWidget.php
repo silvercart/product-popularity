@@ -8,7 +8,6 @@ use SilverCart\Model\ {
     Widgets\Widget,
     Widgets\WidgetTools
 };
-use SilverStripe\Forms\CompositeField;
 use SilverStripe\ORM\ {
     ArrayList,
     FieldType\DBBoolean,
@@ -122,7 +121,7 @@ class PopularProductsWidget extends Widget
         
         $products = Product::get()
                 ->limit($this->NumberOfProductsToShow)
-                ->sort('PopularityScoreCurrentMonth', 'DESC');
+                ->sort(['PopularityScoreCurrentMonth'=>'DESC', 'PopularityScoreTotal'=>'DESC']);
         
         return $products;
     }
