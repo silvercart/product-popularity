@@ -116,12 +116,17 @@ class ProductPopularity extends DataObject
      * @return $this
      * 
      * @author Sebastian Diel <sdiel@pixeltricks.de>
-     * @since 30.08.2018
+     * @since 04.09.2018
      */
     public function addScore($score)
     {
-        $this->Score += $score;
-        $this->write();
+        $product = $this->Product();
+        if ($product instanceof Product
+            && $product->exists()
+        ) {
+            $this->Score += $score;
+            $this->write();
+        }
         return $this;
     }
     
