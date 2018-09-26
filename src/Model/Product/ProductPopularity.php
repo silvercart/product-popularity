@@ -54,6 +54,26 @@ class ProductPopularity extends DataObject
      * @var string
      */
     private static $table_name = 'SilvercartProductPopularity';
+    
+    /**
+     * Returns the translated singular name of the object. If no translation exists
+     * the class name will be returned.
+     * 
+     * @return string
+     */
+    public function singular_name() {
+        return Tools::singular_name_for($this);
+    }
+
+    /**
+     * Returns the translated plural name of the object. If no translation exists
+     * the class name will be returned.
+     * 
+     * @return string
+     */
+    public function plural_name() {
+        return Tools::plural_name_for($this); 
+    }
 
     /**
      * Returns the field labels.

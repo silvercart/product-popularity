@@ -63,6 +63,27 @@ class ProductExtension extends DataExtension
     }
     
     /**
+     * Adds popularity to the product group sort selection.
+     * 
+     * @param array &$fields Sortable field list to update
+     * 
+     * @return void
+     * 
+     * @author Sebastian Diel <sdiel@pixeltricks.de>
+     * @since 26.09.2018
+     */
+    public function updateSortableFrontentFields(&$fields)
+    {
+        $productTable = $this->owner->config()->get('table_name');
+        $fields = array_merge(
+                [
+                    "{$productTable}.PopularityScoreCurrentMonth DESC, {$productTable}.PopularityScoreTotal DESC" => ProductPopularity::singleton()->singular_name(),
+                ],
+                $fields
+        );
+    }
+    
+    /**
      * Increases the popularity score after adding a product to cart.
      * 
      * @param \SilverCart\Model\Order\ShoppingCartPosition $position
