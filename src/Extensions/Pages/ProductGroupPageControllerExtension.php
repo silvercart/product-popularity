@@ -17,6 +17,15 @@ use SilverStripe\Core\Extension;
 class ProductGroupPageControllerExtension extends Extension
 {
     /**
+     * List of allowed actions.
+     *
+     * @var array
+     */
+    private static $allowed_actions = [
+        'popularproducts'
+    ];
+
+    /**
      * Updates a products popularity score if necessary.
      * 
      * @return void
