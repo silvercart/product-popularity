@@ -42,6 +42,28 @@ class ProductGroupPageExtension extends DataExtension
     }
     
     /**
+     * Adds a navigation item.
+     * 
+     * @param \SilverStripe\ORM\ArrayList $items Items to update
+     * 
+     * @return void
+     * 
+     * @author Sebastian Diel <sdiel@pixeltricks.de>
+     * @since 10.10.2018
+     */
+    public function updateDynamicProductGroupNavigationItems($items)
+    {
+        $ctrl = Controller::curr();
+        if ($ctrl->hasAction('popularproducts')) {
+            $items->push(ArrayData::create([
+                'Link'      => $ctrl->Link('popularproducts'),
+                'Title'     => $this->owner->fieldLabel('PopularProducts'),
+                'MenuTitle' => $this->owner->fieldLabel('PopularProducts'),
+            ]));
+        }
+    }
+    
+    /**
      * Updates the bread crumb items.
      * 
      * @param \SilverStripe\ORM\ArrayList $items Bread crumb items
