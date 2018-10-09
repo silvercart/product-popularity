@@ -1,6 +1,6 @@
 <div class="row row-offcanvas row-offcanvas-right">
 <% cached $CacheKey,'popularproducts' %>
-    <section id="content-main" class="col-12 <%if $InsertWidgetArea('Sidebar') %>col-md-9<% end_if %>">
+    <section id="content-main" class="col-12 col-md-9 order-2">
         <h2 class="sr-only">{$Title}</h2>
         <% include SilverCart/Model/Pages/BreadCrumbs %>
         <% with $getPopularProductsForTemplate %>
@@ -11,9 +11,8 @@
         <% end_with %>
     </section>
 <% end_cached %>
-<%if $InsertWidgetArea('Sidebar') %>
-    <aside id="sidebar" class="col-12 col-md-3 sidebar-offcanvas">
+    <aside id="sidebar" class="col-12 col-md-3 sidebar-offcanvas order-1 border-right">
+        <% include SilverCart\Model\Pages\ProductGroupSidebar %>
         {$InsertWidgetArea('Sidebar')}
     </aside>
-<% end_if %>
 </div>
