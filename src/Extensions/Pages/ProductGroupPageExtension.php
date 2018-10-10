@@ -57,7 +57,10 @@ class ProductGroupPageExtension extends DataExtension
         if ($ctrl->hasAction('popularproducts')) {
             $items->push(ArrayData::create([
                 'Link'      => $ctrl->Link('popularproducts'),
-                'Title'     => $this->owner->fieldLabel('PopularProducts'),
+                'Title'     => _t('SilverCart.Buy2', 'Buy {title1} {title2}', [
+                    'title1' => $this->owner->Title,
+                    'title2' => $this->owner->fieldLabel('PopularProducts'),
+                ]),
                 'MenuTitle' => $this->owner->fieldLabel('PopularProducts'),
             ]));
         }
