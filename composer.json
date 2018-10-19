@@ -17,10 +17,5 @@
     ],
     "require": {
         "silvercart/silvercart": "~4.1"
-    },
-    "extra": {
-        "expose": [
-            "client"
-        ]
     }
 }
