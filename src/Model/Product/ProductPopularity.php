@@ -62,7 +62,8 @@ class ProductPopularity extends DataObject
      * 
      * @return string
      */
-    public function singular_name() {
+    public function singular_name() :string
+    {
         return Tools::singular_name_for($this);
     }
 
@@ -72,7 +73,8 @@ class ProductPopularity extends DataObject
      * 
      * @return string
      */
-    public function plural_name() {
+    public function plural_name() : string
+    {
         return Tools::plural_name_for($this); 
     }
 
@@ -86,7 +88,7 @@ class ProductPopularity extends DataObject
      * @author Sebastian Diel <sdiel@pixeltricks.de>
      * @since 30.08.2018
      */
-    public function fieldLabels($includerelations = true)
+    public function fieldLabels($includerelations = true) : array
     {
         return array_merge(
                 parent::fieldLabels($includerelations),
@@ -103,16 +105,17 @@ class ProductPopularity extends DataObject
      * @return void
      * 
      * @author Sebastian Diel <sdiel@pixeltricks.de>
-     * @since 30.08.2018
+     * @since 23.01.2019
      */
-    protected function onAfterWrite()
+    protected function onAfterWrite() : void
     {
         parent::onAfterWrite();
         if ($this->isCurrentScore()) {
-            $totalScore = self::get_total_score($this->Product());
-            $tableName  = Product::config()->get('table_name');
+            $currentScore = (int) $this->Score;
+            $totalScore   = self::get_total_score($this->Product());
+            $tableName    = Product::config()->get('table_name');
             DB::query("LOCK TABLES {$tableName} WRITE");
-            DB::query("UPDATE {$tableName} SET PopularityScoreCurrentMonth = {$this->Score}, PopularityScoreTotal = {$totalScore} WHERE ID = {$this->ProductID}");
+            DB::query("UPDATE {$tableName} SET PopularityScoreCurrentMonth = {$currentScore}, PopularityScoreTotal = {$totalScore} WHERE ID = {$this->ProductID}");
             DB::query("UNLOCK TABLES");
         }
     }
@@ -125,7 +128,7 @@ class ProductPopularity extends DataObject
      * @author Sebastian Diel <sdiel@pixeltricks.de>
      * @since 30.08.2018
      */
-    public function Product()
+    public function Product() : ?Product
     {
         return Product::get()->byID($this->ProductID);
     }
@@ -140,11 +143,11 @@ class ProductPopularity extends DataObject
      * @author Sebastian Diel <sdiel@pixeltricks.de>
      * @since 04.09.2018
      */
-    public function addScore($score)
+    public function addScore($score) : ProductPopularity
     {
         $product = $this->Product();
         if ($product instanceof Product
-            && $product->exists()
+         && $product->exists()
         ) {
             $this->Score += $score;
             $this->write();
@@ -157,7 +160,7 @@ class ProductPopularity extends DataObject
      * 
      * @return bool
      */
-    public function isCurrentScore()
+    public function isCurrentScore() : bool
     {
         return substr($this->Created, 0, 7) == date('Y-m');
     }
@@ -169,7 +172,7 @@ class ProductPopularity extends DataObject
      * 
      * @return int
      */
-    public static function get_total_score(Product $product)
+    public static function get_total_score(Product $product) : int
     {
         return (int) self::get()->filter('ProductID', $product->ID)->sum('Score');
     }
@@ -181,9 +184,9 @@ class ProductPopularity extends DataObject
      * 
      * @return int
      */
-    public static function get_current_score(Product $product)
+    public static function get_current_score(Product $product) : int
     {
-        return self::get_current($product)->Score;
+        return (int) self::get_current($product)->Score;
     }
     
     /**
@@ -195,9 +198,9 @@ class ProductPopularity extends DataObject
      * 
      * @return int
      */
-    public static function get_score_by_month(Product $product, $month, $year = null)
+    public static function get_score_by_month(Product $product, $month, $year = null) : int
     {
-        return self::get_by_month($product, $month, $year)->Score;
+        return (int) self::get_by_month($product, $month, $year)->Score;
     }
     
     /**
@@ -207,7 +210,7 @@ class ProductPopularity extends DataObject
      * 
      * @return ProductPopularity
      */
-    public static function get_current(Product $product)
+    public static function get_current(Product $product) : ProductPopularity
     {
         return self::get_by_month($product, date('m'));
     }
@@ -221,7 +224,7 @@ class ProductPopularity extends DataObject
      * 
      * @return ProductPopularity
      */
-    public static function get_by_month(Product $product, $month, $year = null)
+    public static function get_by_month(Product $product, $month, $year = null) : ProductPopularity
     {
         if ($product->exists()) {
             if (is_null($year)) {
@@ -251,12 +254,12 @@ class ProductPopularity extends DataObject
      * 
      * @param Product $product Product to check
      * 
-     * @return boolean
+     * @return bool
      * 
      * @author Sebastian Diel <sdiel@pixeltricks.de>
      * @since 30.08.2018
      */
-    public static function is_first_view(Product $product)
+    public static function is_first_view(Product $product) : bool
     {
         $isFirstView = false;
         $productIDs  = self::get_viewed_product_ids();
@@ -271,14 +274,14 @@ class ProductPopularity extends DataObject
      * 
      * @param Product $product Product to check
      * 
-     * @return boolean
+     * @return void
      * 
      * @author Sebastian Diel <sdiel@pixeltricks.de>
      * @since 30.08.2018
      */
-    public static function mark_as_viewed(Product $product)
+    public static function mark_as_viewed(Product $product) : void
     {
-        $productIDs   = self::get_viewed_product_ids();
+        $productIDs = self::get_viewed_product_ids();
         if (!in_array($product->ID, $productIDs)) {
             $productIDs[] = $product->ID;
             Tools::Session()->set(self::VIEWED_SESSION_KEY, $productIDs);
@@ -291,12 +294,12 @@ class ProductPopularity extends DataObject
      * 
      * @param Product $product Product to check
      * 
-     * @return boolean
+     * @return void
      * 
      * @author Sebastian Diel <sdiel@pixeltricks.de>
      * @since 30.08.2018
      */
-    public static function mark_as_not_viewed(Product $product)
+    public static function mark_as_not_viewed(Product $product) : void
     {
         $productIDs = self::get_viewed_product_ids();
         $key        = array_search($product->ID, $productIDs);
@@ -315,7 +318,7 @@ class ProductPopularity extends DataObject
      * 
      * @return array
      */
-    public static function get_viewed_product_ids()
+    public static function get_viewed_product_ids() : array
     {
         $productIDs = Tools::Session()->get(self::VIEWED_SESSION_KEY);
         if (!is_array($productIDs)) {
@@ -333,7 +336,7 @@ class ProductPopularity extends DataObject
      * @author Sebastian Diel <sdiel@pixeltricks.de>
      * @since 30.08.2018
      */
-    public static function can_add_popularity()
+    public static function can_add_popularity() : bool
     {
         return !(Customer::is_admin() && Director::isLive());
     }
