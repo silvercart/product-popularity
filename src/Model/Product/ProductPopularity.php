@@ -7,6 +7,7 @@ use SilverCart\Model\Customer\Customer;
 use SilverCart\Model\Product\Product;
 use SilverStripe\Control\Director;
 use SilverStripe\ORM\DataObject;
+use SilverStripe\ORM\DB;
 use SilverStripe\ORM\FieldType\DBInt;
 
 /**
@@ -108,10 +109,11 @@ class ProductPopularity extends DataObject
     {
         parent::onAfterWrite();
         if ($this->isCurrentScore()) {
-            $product = $this->Product();
-            $product->PopularityScoreCurrentMonth = $this->Score;
-            $product->PopularityScoreTotal        = self::get_total_score($product);
-            $product->write();
+            $totalScore = self::get_total_score($this->Product());
+            $tableName  = Product::config()->get('table_name');
+            DB::query("LOCK TABLES {$tableName} WRITE");
+            DB::query("UPDATE {$tableName} SET PopularityScoreCurrentMonth = {$this->Score}, PopularityScoreTotal = {$totalScore} WHERE ID = {$this->ProductID}");
+            DB::query("UNLOCK TABLES");
         }
     }
     
