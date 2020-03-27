@@ -1,5 +1,6 @@
 en:
   SilverCart\ProductPopularity\Extensions\Pages\ProductGroupPageExtension:
+    Popular: "Popular"
     PopularProducts: "Popular Products"
     PopularProductsIn: "Popular in {productgroup}"
     PopularProductsLinkTitle: "Show more popular products"

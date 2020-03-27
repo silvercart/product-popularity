@@ -2,6 +2,7 @@
 
 namespace SilverCart\ProductPopularity\Extensions\Pages;
 
+use SilverCart\Model\Pages\ProductGroupPage;
 use SilverStripe\ORM\DataExtension;
 use SilverStripe\Control\Controller;
 use SilverStripe\ORM\FieldType\DBText;
@@ -91,6 +92,29 @@ class ProductGroupPageExtension extends DataExtension
     }
     
     /**
+     * Updates the meta title while beeing in the popular products view.
+     * 
+     * @param string &$metaTitle           Original meta title
+     * @param string $plainMetaTitle       Original plain meta title
+     * @param string $plainMetaTitleShort  Original plain meta title short
+     * @param string $metaTitlePrefix      Meta title prefix
+     * @param string $metaTitleSuffix      Meta title suffix
+     * @param string $metaTitleShortPrefix Meta title short prefix
+     * @param string $metaTitleShortSuffix Meta title short suffix
+     * 
+     * @return void
+     */
+    public function updateMetaTitle(string &$metaTitle, string $plainMetaTitle, string $plainMetaTitleShort, string $metaTitlePrefix, string $metaTitleSuffix, string $metaTitleShortPrefix, string $metaTitleShortSuffix) : void
+    {
+        $ctrl = Controller::curr();
+        if ($ctrl->getAction() === 'popularproducts') {
+            $metaTitle = _t(ProductGroupPage::class . '.BuyTitle', 'Buy {title}', [
+                'title' => "{$this->owner->fieldLabel('Popular')} {$metaTitleShortPrefix}{$plainMetaTitleShort}{$metaTitleShortSuffix}",
+            ]);
+        }
+    }
+    
+    /**
      * Updates the field labels.
      * 
      * @param array &$labels Labels to update
@@ -105,6 +129,7 @@ class ProductGroupPageExtension extends DataExtension
         $labels = array_merge(
                 $labels,
                 [
+                    'Popular'                  => _t(self::class . ".Popular", "Popular"),
                     'PopularProducts'          => _t(self::class . ".PopularProducts", "Popular Products"),
                     'PopularProductsLinkTitle' => _t(self::class . ".PopularProductsLinkTitle", "Show more popular products"),
                 ]
