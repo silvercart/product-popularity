@@ -104,7 +104,7 @@ class ProductGroupPageExtension extends DataExtension
      * 
      * @return void
      */
-    public function updateMetaTitle(string &$metaTitle, string $plainMetaTitle, string $plainMetaTitleShort, string $metaTitlePrefix, string $metaTitleSuffix, string $metaTitleShortPrefix, string $metaTitleShortSuffix) : void
+    public function updateMetaTitle(string &$metaTitle, string $plainMetaTitle = null, string $plainMetaTitleShort = null, string $metaTitlePrefix = null, string $metaTitleSuffix = null, string $metaTitleShortPrefix = null, string $metaTitleShortSuffix = null) : void
     {
         $ctrl = Controller::curr();
         if ($ctrl->getAction() === 'popularproducts') {
