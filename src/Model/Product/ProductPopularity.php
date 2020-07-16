@@ -114,7 +114,7 @@ class ProductPopularity extends DataObject
             $currentScore = (int) $this->Score;
             $totalScore   = self::get_total_score($this->Product());
             $tableName    = Product::config()->get('table_name');
-            DB::query("BEGIN;UPDATE {$tableName} SET PopularityScoreCurrentMonth = {$currentScore}, PopularityScoreTotal = {$totalScore} WHERE ID = {$this->ProductID};COMMIT;");
+            DB::query("UPDATE {$tableName} SET PopularityScoreCurrentMonth = {$currentScore}, PopularityScoreTotal = {$totalScore} WHERE ID = {$this->ProductID}");
         }
     }
     
