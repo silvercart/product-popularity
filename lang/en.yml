@@ -4,6 +4,7 @@ en:
     PopularProducts: "Popular Products"
     PopularProductsIn: "Popular in {productgroup}"
     PopularProductsLinkTitle: "Show more popular products"
+    ShowPopularProducts: 'Show popular products'
   SilverCart\ProductPopularity\Extensions\Product\ProductExtension:
     PopularityScoreTotal: "Popularity Score (total)"
     PopularityScoreCurrentMonth: "Popularity Score (current month)"

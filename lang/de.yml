@@ -4,6 +4,7 @@ de:
     PopularProducts: "Beliebte Artikel"
     PopularProductsIn: "Beliebt bei {productgroup}"
     PopularProductsLinkTitle: "Mehr beliebte Artikel anzeigen"
+    ShowPopularProducts: 'Zeige beliebte Artikel'
   SilverCart\ProductPopularity\Extensions\Product\ProductExtension:
     PopularityScoreTotal: "Beliebtheitswert (gesamt)"
     PopularityScoreCurrentMonth: "Beliebtheitswert (laufender Monat)"

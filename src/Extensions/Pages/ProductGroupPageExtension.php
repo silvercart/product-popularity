@@ -2,9 +2,12 @@
 
 namespace SilverCart\ProductPopularity\Extensions\Pages;
 
+use SilverCart\Dev\Tools;
 use SilverCart\Model\Pages\ProductGroupPage;
-use SilverStripe\ORM\DataExtension;
 use SilverStripe\Control\Controller;
+use SilverStripe\Forms\CheckboxField;
+use SilverStripe\Forms\FieldList;
+use SilverStripe\ORM\DataExtension;
 use SilverStripe\ORM\FieldType\DBText;
 use SilverStripe\View\ArrayData;
 
@@ -20,13 +23,15 @@ use SilverStripe\View\ArrayData;
  */
 class ProductGroupPageExtension extends DataExtension
 {
-    /**
-     * Determines whether to show popular products on a product group page or not.
+     /**
+     * Attributes.
      *
-     * @var bool
+     * @var array
      */
-    private static $show_popular_products = true;
-    
+    private static $db = [
+        'ShowPopularProducts' => 'Boolean(0)',
+    ];
+
     /**
      * Adds a selection of popular products.
      * 
@@ -37,7 +42,7 @@ class ProductGroupPageExtension extends DataExtension
      * @author Sebastian Diel <sdiel@pixeltricks.de>
      * @since 29.09.2018
      */
-    public function updateBeforeInsertWidgetAreaContent(&$content)
+    public function updateBeforeInsertWidgetAreaContent(&$content) : void
     {
         $content .= $this->owner->renderWith(self::class . "_popularproducts");
     }
@@ -52,7 +57,7 @@ class ProductGroupPageExtension extends DataExtension
      * @author Sebastian Diel <sdiel@pixeltricks.de>
      * @since 10.10.2018
      */
-    public function updateDynamicProductGroupNavigationItems($items)
+    public function updateDynamicProductGroupNavigationItems($items) : void
     {
         $ctrl = Controller::curr();
         if ($ctrl->hasAction('popularproducts')) {
@@ -77,7 +82,7 @@ class ProductGroupPageExtension extends DataExtension
      * @author Sebastian Diel <sdiel@pixeltricks.de>
      * @since 29.09.2018
      */
-    public function updateBreadcrumbItems($items)
+    public function updateBreadcrumbItems($items) : void
     {
         $ctrl = Controller::curr();
         if ($ctrl->getAction() === 'popularproducts') {
@@ -89,6 +94,19 @@ class ProductGroupPageExtension extends DataExtension
                 'Link'      => $ctrl->Link('popularproducts'),
             ]));
         }
+    }
+    
+    /**
+     * Updates the CMS fields.
+     * 
+     * @param FieldList $fields Original fields to update
+     * 
+     * @return void
+     */
+    public function updateCMSFields(FieldList $fields) : void
+    {
+        $showPopularProductField = CheckboxField::create('ShowPopularProducts', $this->owner->fieldLabel('ShowPopularProducts'));
+        $fields->insertAfter('ShowNewProducts', $showPopularProductField);
     }
     
     /**
@@ -124,7 +142,7 @@ class ProductGroupPageExtension extends DataExtension
      * @author Sebastian Diel <sdiel@pixeltricks.de>
      * @since 29.09.2018
      */
-    public function updateFieldLabels(&$labels)
+    public function updateFieldLabels(&$labels) : array
     {
         $labels = array_merge(
                 $labels,
@@ -132,6 +150,7 @@ class ProductGroupPageExtension extends DataExtension
                     'Popular'                  => _t(self::class . ".Popular", "Popular"),
                     'PopularProducts'          => _t(self::class . ".PopularProducts", "Popular Products"),
                     'PopularProductsLinkTitle' => _t(self::class . ".PopularProductsLinkTitle", "Show more popular products"),
+                    'ShowPopularProducts'      => _t(self::class . '.ShowPopularProducts', 'Show popular products'),
                 ]
         );
     }
@@ -143,7 +162,7 @@ class ProductGroupPageExtension extends DataExtension
      * 
      * @return DataList
      */
-    public function getPopularProducts($limit = 20)
+    public function getPopularProducts(int $limit = 20)
     {
         $products = $this->owner->getProductsInherited()
                 ->sort(['PopularityScoreCurrentMonth'=>'DESC', 'PopularityScoreTotal'=>'DESC']);
@@ -162,7 +181,7 @@ class ProductGroupPageExtension extends DataExtension
      * 
      * @return ArrayData
      */
-    public function getPopularProductsForTemplate($limit = 20)
+    public function getPopularProductsForTemplate($limit = 20) : ArrayData
     {
         return ArrayData::create([
             "Title"                    => _t(self::class . ".PopularProductsIn", "Popular in {productgroup}", ['productgroup' => $this->owner->Title]),
@@ -176,17 +195,34 @@ class ProductGroupPageExtension extends DataExtension
     /**
      * Returns whether to show new products or not.
      * 
-     * @return boolean
+     * @return bool
      * 
      * @author Sebastian Diel <sdiel@pixeltricks.de>
      * @since 29.09.2018
      */
-    public function ShowPopularProducts()
+    public function ShowPopularProducts() : bool
     {
-        $showPopularProducts = $this->owner->config()->get('show_popular_products');
+        $showPopularProducts = $this->owner->getShowPopularProducts();
         if ($showPopularProducts
-         && !$this->owner->getPopularProducts()->exists()) {
+         && !$this->owner->getPopularProducts()->exists()
+        ) {
             $showPopularProducts = false;
+        }
+        return $showPopularProducts;
+    }
+    
+    /**
+     * Returns the ShowPopularProducts setting.
+     * 
+     * @return bool
+     */
+    public function getShowPopularProducts() : bool
+    {
+        $showPopularProducts = (bool) $this->owner->getField('ShowPopularProducts');
+        if (!$this->owner->getCMSFieldsIsCalled
+         && !Tools::isBackendEnvironment()
+        ) {
+            $this->owner->extend('updateShowPopularProducts', $showPopularProducts);
         }
         return $showPopularProducts;
     }
