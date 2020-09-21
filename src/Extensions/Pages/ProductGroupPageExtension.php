@@ -29,7 +29,7 @@ class ProductGroupPageExtension extends DataExtension
      * @var array
      */
     private static $db = [
-        'ShowPopularProducts' => 'Boolean(0)',
+        'ShowPopularProducts' => 'Boolean(1)',
     ];
 
     /**
