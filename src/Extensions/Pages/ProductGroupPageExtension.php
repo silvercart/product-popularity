@@ -142,7 +142,7 @@ class ProductGroupPageExtension extends DataExtension
      * @author Sebastian Diel <sdiel@pixeltricks.de>
      * @since 29.09.2018
      */
-    public function updateFieldLabels(&$labels) : array
+    public function updateFieldLabels(&$labels) : void
     {
         $labels = array_merge(
                 $labels,
