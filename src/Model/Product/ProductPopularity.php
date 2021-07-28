@@ -170,9 +170,13 @@ class ProductPopularity extends DataObject
      * 
      * @return int
      */
-    public static function get_total_score(Product $product) : int
+    public static function get_total_score(?Product $product) : int
     {
-        return (int) self::get()->filter('ProductID', $product->ID)->sum('Score');
+        $score = 0;
+        if ($product instanceof Product) {
+            $score = (int) self::get()->filter('ProductID', $product->ID)->sum('Score');
+        }
+        return $score;
     }
     
     /**
