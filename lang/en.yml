@@ -1,23 +1,23 @@
 en:
   SilverCart\ProductPopularity\Extensions\Pages\ProductGroupPageExtension:
-    Popular: "Popular"
-    PopularProducts: "Popular Products"
-    PopularProductsIn: "Popular in {productgroup}"
-    PopularProductsLinkTitle: "Show more popular products"
+    Popular: Popular
+    PopularProducts: 'Popular Products'
+    PopularProductsIn: 'Popular in {productgroup}'
+    PopularProductsLinkTitle: 'Show more popular products'
     ShowPopularProducts: 'Show popular products'
   SilverCart\ProductPopularity\Extensions\Product\ProductExtension:
-    PopularityScoreTotal: "Popularity Score (total)"
-    PopularityScoreCurrentMonth: "Popularity Score (current month)"
+    PopularityScoreCurrentMonth: 'Popularity Score (current month)'
+    PopularityScoreTotal: 'Popularity Score (total)'
   SilverCart\ProductPopularity\Model\Product\ProductPopularity:
-    PLURALNAME: "Popularity"
-    Product: "Product"
-    ProductID: "Product-ID"
-    Score: "Score"
-    SINGULARNAME: "Popularity"
+    PLURALNAME: Popularity
+    Product: Product
+    ProductID: Product-ID
+    SINGULARNAME: Popularity
+    Score: Score
   SilverCart\ProductPopularity\Model\Widgets\PopularProductsWidget:
-    CMSTITLE: "Popular Products"
-    DESCRIPTION: "This widget shows a custom number of popular products."
-    TITLE: "Popular Products"
+    CMSTITLE: 'Popular Products'
+    DESCRIPTION: 'This widget shows a custom number of popular products.'
+    TITLE: 'Popular Products'
   SilverCart\ProductPopularity\Model\Widgets\PopularProductsWidgetTranslation:
-    PLURALNAME: "Translations"
-    SINGULARNAME: "Translation"
+    PLURALNAME: Translations
+    SINGULARNAME: Translation

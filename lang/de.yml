@@ -1,23 +1,23 @@
 de:
   SilverCart\ProductPopularity\Extensions\Pages\ProductGroupPageExtension:
-    Popular: "Beliebte"
-    PopularProducts: "Beliebte Artikel"
-    PopularProductsIn: "Beliebt bei {productgroup}"
-    PopularProductsLinkTitle: "Mehr beliebte Artikel anzeigen"
+    Popular: Beliebte
+    PopularProducts: 'Beliebte Artikel'
+    PopularProductsIn: 'Beliebt bei {productgroup}'
+    PopularProductsLinkTitle: 'Mehr beliebte Artikel anzeigen'
     ShowPopularProducts: 'Zeige beliebte Artikel'
   SilverCart\ProductPopularity\Extensions\Product\ProductExtension:
-    PopularityScoreTotal: "Beliebtheitswert (gesamt)"
-    PopularityScoreCurrentMonth: "Beliebtheitswert (laufender Monat)"
+    PopularityScoreCurrentMonth: 'Beliebtheitswert (laufender Monat)'
+    PopularityScoreTotal: 'Beliebtheitswert (gesamt)'
   SilverCart\ProductPopularity\Model\Product\ProductPopularity:
-    PLURALNAME: "Beliebtheit"
-    Product: "Artikel"
-    ProductID: "Artikel-ID"
-    Score: "Wert"
-    SINGULARNAME: "Beliebtheit"
+    PLURALNAME: Beliebtheit
+    Product: Artikel
+    ProductID: Artikel-ID
+    SINGULARNAME: Beliebtheit
+    Score: Wert
   SilverCart\ProductPopularity\Model\Widgets\PopularProductsWidget:
-    CMSTITLE: "Beliebte Artikel"
-    DESCRIPTION: "Dieses Widget zeigt eine konfigurierbare Anzahl von beliebten Artikeln an."
-    TITLE: "Beliebte Artikel"
+    CMSTITLE: 'Beliebte Artikel'
+    DESCRIPTION: 'Dieses Widget zeigt eine konfigurierbare Anzahl von beliebten Artikeln an.'
+    TITLE: 'Beliebte Artikel'
   SilverCart\ProductPopularity\Model\Widgets\PopularProductsWidgetTranslation:
-    PLURALNAME: "Übersetzungen"
-    SINGULARNAME: "Übersetzung"
+    PLURALNAME: Übersetzungen
+    SINGULARNAME: Übersetzung
