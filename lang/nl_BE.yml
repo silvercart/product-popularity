@@ -1,0 +1,23 @@
+nl_BE:
+  SilverCart\ProductPopularity\Extensions\Pages\ProductGroupPageExtension:
+    Popular: Populair
+    PopularProducts: 'Populaire producten'
+    PopularProductsIn: 'Populair in {productgroup}'
+    PopularProductsLinkTitle: 'Toon meer populaire producten'
+    ShowPopularProducts: 'Toon populaire producten'
+  SilverCart\ProductPopularity\Extensions\Product\ProductExtension:
+    PopularityScoreCurrentMonth: 'Populariteitsscore (huidige maand)'
+    PopularityScoreTotal: 'Populariteitsscore (totaal)'
+  SilverCart\ProductPopularity\Model\Product\ProductPopularity:
+    PLURALNAME: Populariteit
+    Product: Artikelen
+    ProductID: Product-ID
+    SINGULARNAME: Populariteit
+    Score: Waarde
+  SilverCart\ProductPopularity\Model\Widgets\PopularProductsWidget:
+    CMSTITLE: 'Populaire producten'
+    DESCRIPTION: 'Deze widget toont een aangepast aantal populaire producten.'
+    TITLE: 'Populaire producten'
+  SilverCart\ProductPopularity\Model\Widgets\PopularProductsWidgetTranslation:
+    PLURALNAME: Vertalingen
+    SINGULARNAME: Vertaling
