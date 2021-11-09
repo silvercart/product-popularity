@@ -1,0 +1,23 @@
+nb_NO:
+  SilverCart\ProductPopularity\Extensions\Pages\ProductGroupPageExtension:
+    Popular: Populær
+    PopularProducts: 'Populære varer'
+    PopularProductsIn: 'Likt av {productgroup}'
+    PopularProductsLinkTitle: 'Se flere populære artikler'
+    ShowPopularProducts: 'Vis populære artikler'
+  SilverCart\ProductPopularity\Extensions\Product\ProductExtension:
+    PopularityScoreCurrentMonth: 'Popularitetsvurdering (nåværende måned)'
+    PopularityScoreTotal: 'Popularitetsvurdering (totalt)'
+  SilverCart\ProductPopularity\Model\Product\ProductPopularity:
+    PLURALNAME: popularitet
+    Product: gjenstander
+    ProductID: Vare-ID
+    SINGULARNAME: popularitet
+    Score: verdi
+  SilverCart\ProductPopularity\Model\Widgets\PopularProductsWidget:
+    CMSTITLE: 'Populære varer'
+    DESCRIPTION: 'Denne widgeten viser et konfigurerbart antall populære artikler.'
+    TITLE: 'Populære varer'
+  SilverCart\ProductPopularity\Model\Widgets\PopularProductsWidgetTranslation:
+    PLURALNAME: Oversettelser
+    SINGULARNAME: oversettelse

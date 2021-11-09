@@ -1,0 +1,23 @@
+tr_TR:
+  SilverCart\ProductPopularity\Extensions\Pages\ProductGroupPageExtension:
+    Popular: Popüler
+    PopularProducts: 'Popüler öğeler'
+    PopularProductsIn: '{productgroup} tarafından beğenildi'
+    PopularProductsLinkTitle: 'Daha popüler makaleleri görüntüleyin'
+    ShowPopularProducts: 'Popüler makaleleri göster'
+  SilverCart\ProductPopularity\Extensions\Product\ProductExtension:
+    PopularityScoreCurrentMonth: 'Popülerlik derecesi (geçerli ay)'
+    PopularityScoreTotal: 'Popülerlik derecesi (toplam)'
+  SilverCart\ProductPopularity\Model\Product\ProductPopularity:
+    PLURALNAME: popülerlik
+    Product: öğeler
+    ProductID: 'Öğe kimliği'
+    SINGULARNAME: popülerlik
+    Score: değer
+  SilverCart\ProductPopularity\Model\Widgets\PopularProductsWidget:
+    CMSTITLE: 'Popüler öğeler'
+    DESCRIPTION: 'Bu pencere öğesi, yapılandırılabilir sayıda popüler makaleyi gösterir.'
+    TITLE: 'Popüler öğeler'
+  SilverCart\ProductPopularity\Model\Widgets\PopularProductsWidgetTranslation:
+    PLURALNAME: Çeviriler
+    SINGULARNAME: tercüme

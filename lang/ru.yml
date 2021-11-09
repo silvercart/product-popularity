@@ -1,0 +1,23 @@
+ru:
+  SilverCart\ProductPopularity\Extensions\Pages\ProductGroupPageExtension:
+    Popular: Популярные
+    PopularProducts: 'Популярные статьи'
+    PopularProductsIn: 'Популярно в {productgroup}'
+    PopularProductsLinkTitle: 'Показать больше популярных статей'
+    ShowPopularProducts: 'Показать популярные статьи'
+  SilverCart\ProductPopularity\Extensions\Product\ProductExtension:
+    PopularityScoreCurrentMonth: 'Оценка популярности (текущий месяц)'
+    PopularityScoreTotal: 'Оценка популярности (общая)'
+  SilverCart\ProductPopularity\Model\Product\ProductPopularity:
+    PLURALNAME: Популярность
+    Product: Статья
+    ProductID: 'ID статьи'
+    SINGULARNAME: Популярность
+    Score: Значение
+  SilverCart\ProductPopularity\Model\Widgets\PopularProductsWidget:
+    CMSTITLE: 'Популярные статьи'
+    DESCRIPTION: 'Этот виджет отображает настраиваемое количество популярных товаров.'
+    TITLE: 'Популярные статьи'
+  SilverCart\ProductPopularity\Model\Widgets\PopularProductsWidgetTranslation:
+    PLURALNAME: Переводы
+    SINGULARNAME: Перевод

@@ -1,0 +1,23 @@
+sv:
+  SilverCart\ProductPopularity\Extensions\Pages\ProductGroupPageExtension:
+    Popular: Populära
+    PopularProducts: 'Populära artiklar'
+    PopularProductsIn: 'Populär med {productgroup}'
+    PopularProductsLinkTitle: 'Visa fler populära artiklar'
+    ShowPopularProducts: 'Visa populära artiklar'
+  SilverCart\ProductPopularity\Extensions\Product\ProductExtension:
+    PopularityScoreCurrentMonth: 'Popularitetspoäng (aktuell månad)'
+    PopularityScoreTotal: 'Popularitetspoäng (totalt)'
+  SilverCart\ProductPopularity\Model\Product\ProductPopularity:
+    PLURALNAME: Popularitet
+    Product: Artikel
+    ProductID: Artikel-ID
+    SINGULARNAME: Popularitet
+    Score: Värde
+  SilverCart\ProductPopularity\Model\Widgets\PopularProductsWidget:
+    CMSTITLE: 'Populära artiklar'
+    DESCRIPTION: 'Den här widgeten visar ett konfigurerbart antal populära objekt.'
+    TITLE: 'Populära artiklar'
+  SilverCart\ProductPopularity\Model\Widgets\PopularProductsWidgetTranslation:
+    PLURALNAME: Översättningar
+    SINGULARNAME: Översättning

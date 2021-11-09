@@ -1,0 +1,23 @@
+sk:
+  SilverCart\ProductPopularity\Extensions\Pages\ProductGroupPageExtension:
+    Popular: Obľúbené
+    PopularProducts: 'Populárne články'
+    PopularProductsIn: 'Obľúbené u {productgroup}'
+    PopularProductsLinkTitle: 'Zobraziť ďalšie populárne články'
+    ShowPopularProducts: 'Zobraziť populárne články'
+  SilverCart\ProductPopularity\Extensions\Product\ProductExtension:
+    PopularityScoreCurrentMonth: 'Skóre popularity (aktuálny mesiac)'
+    PopularityScoreTotal: 'Skóre popularity (spolu)'
+  SilverCart\ProductPopularity\Model\Product\ProductPopularity:
+    PLURALNAME: Popularita
+    Product: Článok
+    ProductID: 'ID článku'
+    SINGULARNAME: Popularita
+    Score: Hodnota
+  SilverCart\ProductPopularity\Model\Widgets\PopularProductsWidget:
+    CMSTITLE: 'Populárne články'
+    DESCRIPTION: 'Tento widget zobrazuje konfigurovateľný počet obľúbených položiek.'
+    TITLE: 'Populárne články'
+  SilverCart\ProductPopularity\Model\Widgets\PopularProductsWidgetTranslation:
+    PLURALNAME: Preklady
+    SINGULARNAME: Preklad

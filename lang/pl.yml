@@ -1,0 +1,23 @@
+pl:
+  SilverCart\ProductPopularity\Extensions\Pages\ProductGroupPageExtension:
+    Popular: Popularny
+    PopularProducts: 'Popularne artykuły'
+    PopularProductsIn: 'Popularne z {grupa produktów}'
+    PopularProductsLinkTitle: 'Pokaż więcej popularnych artykułów'
+    ShowPopularProducts: 'Pokaż popularne artykuły'
+  SilverCart\ProductPopularity\Extensions\Product\ProductExtension:
+    PopularityScoreCurrentMonth: 'Wynik popularności (bieżący miesiąc)'
+    PopularityScoreTotal: 'Wynik popularności (ogółem)'
+  SilverCart\ProductPopularity\Model\Product\ProductPopularity:
+    PLURALNAME: Popularność
+    Product: Artykuł
+    ProductID: 'Identyfikator artykułu'
+    SINGULARNAME: Popularność
+    Score: Wartość
+  SilverCart\ProductPopularity\Model\Widgets\PopularProductsWidget:
+    CMSTITLE: 'Popularne artykuły'
+    DESCRIPTION: 'Ten widget wyświetla konfigurowalną liczbę popularnych elementów.'
+    TITLE: 'Popularne artykuły'
+  SilverCart\ProductPopularity\Model\Widgets\PopularProductsWidgetTranslation:
+    PLURALNAME: Tłumaczenia
+    SINGULARNAME: Tłumaczenie

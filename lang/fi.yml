@@ -1,0 +1,23 @@
+fi:
+  SilverCart\ProductPopularity\Extensions\Pages\ProductGroupPageExtension:
+    Popular: Suosittu
+    PopularProducts: 'Suosittuja artikkeleita'
+    PopularProductsIn: 'Suosittu {productgroup}'
+    PopularProductsLinkTitle: 'Näytä lisää suosittuja artikkeleita'
+    ShowPopularProducts: 'Näytä suositut artikkelit'
+  SilverCart\ProductPopularity\Extensions\Product\ProductExtension:
+    PopularityScoreCurrentMonth: 'Suosion pisteet (kuluva kuukausi)'
+    PopularityScoreTotal: 'Suosion pisteet (yhteensä)'
+  SilverCart\ProductPopularity\Model\Product\ProductPopularity:
+    PLURALNAME: Suosio
+    Product: Artikkeli
+    ProductID: 'Artikkelin ID'
+    SINGULARNAME: Suosio
+    Score: Arvo
+  SilverCart\ProductPopularity\Model\Widgets\PopularProductsWidget:
+    CMSTITLE: 'Suosittuja artikkeleita'
+    DESCRIPTION: 'Tämä widget näyttää määritettävissä olevan määrän suosittuja kohteita.'
+    TITLE: 'Suosittuja artikkeleita'
+  SilverCart\ProductPopularity\Model\Widgets\PopularProductsWidgetTranslation:
+    PLURALNAME: Käännökset
+    SINGULARNAME: Käännös

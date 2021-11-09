@@ -1,0 +1,23 @@
+ro:
+  SilverCart\ProductPopularity\Extensions\Pages\ProductGroupPageExtension:
+    Popular: Popular
+    PopularProducts: 'Articole populare'
+    PopularProductsIn: 'Popular cu {productgroup}'
+    PopularProductsLinkTitle: 'Afișați mai multe articole populare'
+    ShowPopularProducts: 'Afișați articole populare'
+  SilverCart\ProductPopularity\Extensions\Product\ProductExtension:
+    PopularityScoreCurrentMonth: 'Scorul de popularitate (luna curentă)'
+    PopularityScoreTotal: 'Scor de popularitate (total)'
+  SilverCart\ProductPopularity\Model\Product\ProductPopularity:
+    PLURALNAME: Popularitate
+    Product: Articolul
+    ProductID: 'ID-ul articolului'
+    SINGULARNAME: Popularitate
+    Score: Valoare
+  SilverCart\ProductPopularity\Model\Widgets\PopularProductsWidget:
+    CMSTITLE: 'Articole populare'
+    DESCRIPTION: 'Acest widget afișează un număr configurabil de articole populare.'
+    TITLE: 'Articole populare'
+  SilverCart\ProductPopularity\Model\Widgets\PopularProductsWidgetTranslation:
+    PLURALNAME: Traduceri
+    SINGULARNAME: Traducere
