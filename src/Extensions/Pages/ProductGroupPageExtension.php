@@ -38,9 +38,6 @@ class ProductGroupPageExtension extends DataExtension
      * @param string &$content Content to update
      * 
      * @return void
-     * 
-     * @author Sebastian Diel <sdiel@pixeltricks.de>
-     * @since 29.09.2018
      */
     public function updateBeforeInsertWidgetAreaContent(&$content) : void
     {
@@ -53,22 +50,21 @@ class ProductGroupPageExtension extends DataExtension
      * @param \SilverStripe\ORM\ArrayList $items Items to update
      * 
      * @return void
-     * 
-     * @author Sebastian Diel <sdiel@pixeltricks.de>
-     * @since 10.10.2018
      */
     public function updateDynamicProductGroupNavigationItems($items) : void
     {
-        $ctrl = Controller::curr();
-        if ($ctrl->hasAction('popularproducts')) {
-            $items->push(ArrayData::create([
-                'Link'      => $ctrl->Link('popularproducts'),
-                'Title'     => _t('SilverCart.Buy2', 'Buy {title1} {title2}', [
-                    'title1' => $this->owner->Title,
-                    'title2' => $this->owner->fieldLabel('PopularProducts'),
-                ]),
-                'MenuTitle' => $this->owner->fieldLabel('PopularProducts'),
-            ]));
+        if ($this->owner->ShowPopularProducts) {
+            $ctrl = Controller::curr();
+            if ($ctrl->hasAction('popularproducts')) {
+                $items->push(ArrayData::create([
+                    'Link'      => $ctrl->Link('popularproducts'),
+                    'Title'     => _t('SilverCart.Buy2', 'Buy {title1} {title2}', [
+                        'title1' => $this->owner->Title,
+                        'title2' => $this->owner->fieldLabel('PopularProducts'),
+                    ]),
+                    'MenuTitle' => $this->owner->fieldLabel('PopularProducts'),
+                ]));
+            }
         }
     }
     
